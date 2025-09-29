@@ -16,30 +16,30 @@ Este repositorio contiene un mapa de referencia de tierras agropecuarias y de co
     - Salidas
         - Directorio de capas rasterizadas: `datos/procesados/rasterizados`
 
-3. Combinación de capas remuestreadas y rasterizadas: `programas/combinacion.R`
+3. Combinación de capas remuestreadas y rasterizadas: `programas/combinacion.R` / `programas/combinacion-v2.R`
     - Entradas
         - Directorio de capas rasterizadas: `datos/procesados/rasterizados`
         - Directorio de capas remuestreadas: `datos/procesados/remuestreados`
     - Salidas
-        - Archivo raster de capa de uso agropecuario forestal inicial: `salidas/mapa-agropecuario-forestal-2020-inicial.tif`
+        - Archivo raster de capa de uso agropecuario forestal inicial: `salidas/mapa-agropecuario-forestal-2020-inicial.tif` / `salidas/mapa-agropecuario-forestal-2020-inicial-v2.tif`
 
-4. Reclasificación de la capa combinada: `programas/reclasificacion.R`
+4. Reclasificación de la capa combinada: `programas/reclasificacion.R` / `programas/reclasificacion-v2.R`
     - Entradas
-        - Archivo raster de capa de uso agropecuario forestal inicial: `salidas/mapa-agropecuario-forestal-2020-inicial.tif`
+        - Archivo raster de capa de uso agropecuario forestal inicial: `salidas/mapa-agropecuario-forestal-2020-inicial.tif` / `salidas/mapa-agropecuario-forestal-2020-inicial-v2.tif`
     - Salidas
-        - Archivo raster de capa de uso agropecuario forestal inicial reclasificada: `salidas/mapa-agropecuario-forestal-2020-inicial-reclasificado.tif`
+        - Archivo raster de capa de uso agropecuario forestal inicial reclasificada: `salidas/mapa-agropecuario-forestal-2020-inicial-reclasificado.tif` / `salidas/mapa-agropecuario-forestal-2020-inicial-reclasificado-v2.tif`
 
-5. Compresión de la capa reclasificada: `programas/compresion-salidas.sh`
+5. Compresión de la capa reclasificada: `programas/compresion-salidas.sh` / `programas/compresion-salidas-v2.sh`
     - Entradas
-        - Archivo raster de capa de uso agropecuario forestal inicial reclasificada: `salidas/mapa-agropecuario-forestal-2020-inicial-reclasificado.tif`
+        - Archivo raster de capa de uso agropecuario forestal inicial reclasificada: `salidas/mapa-agropecuario-forestal-2020-inicial-reclasificado.tif` / `salidas/mapa-agropecuario-forestal-2020-inicial-reclasificado-v2.tif`
     - Salidas
-        - Archivo raster de capa de uso agropecuario forestal (comprimida): `salidas/mapa-agropecuario-forestal-2020.tif`
+        - Archivo raster de capa de uso agropecuario forestal (comprimida): `salidas/mapa-agropecuario-forestal-2020.tif` / `salidas/mapa-agropecuario-forestal-2020-v2.tif`
 
 6. Generación de estadísticas: `programas/generacion-estadisticas.R`
     - Entradas
-        - Archivo raster de capa de uso agropecuario forestal (comprimida): `salidas/mapa-agropecuario-forestal-2020.tif`
+        - Archivo raster de capa de uso agropecuario forestal (comprimida): `salidas/mapa-agropecuario-forestal-2020.tif` / `salidas/mapa-agropecuario-forestal-2020-v2.tif`
     - Salidas
-        - Archivo CSV con estadísticas: `salidas/estadisticas.csv`
+        - Archivo CSV con estadísticas: `salidas/estadisticas.csv` / `salidas/estadisticas-v2.csv`
 
 ## Manejo del contenedor Docker
 

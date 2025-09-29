@@ -72,7 +72,7 @@ ARCHIVO_RASTER_RVN <-
 
 # Archivo raster de capa de uso agropecuario forestal sin humedales
 ARCHIVO_RASTER_USO_AGROPECUARIO_FORESTAL <-
-  here("salidas", "mapa-agropecuario-forestal-2020-inicial-sin-humedales.tif")
+  here("salidas", "mapa-agropecuario-forestal-2020-inicial-v2.tif")
 
 
 # PROCESAMIENTO

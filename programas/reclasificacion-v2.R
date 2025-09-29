@@ -14,7 +14,7 @@ library(terra)
 ARCHIVO_RASTER_USO_AGROPECUARIO_FORESTAL <-
   here(
     "salidas", 
-    "mapa-agropecuario-forestal-2020-inicial-sin-humedales.tif"
+    "mapa-agropecuario-forestal-2020-inicial-v2.tif"
   )
 
 # Archivo raster de capa de uso agropecuario forestal inicial reclasificada
@@ -22,7 +22,7 @@ ARCHIVO_RASTER_USO_AGROPECUARIO_FORESTAL <-
 ARCHIVO_RASTER_USO_AGROPECUARIO_FORESTAL_RECLASIFICADO <-
   here(
     "salidas", 
-    "mapa-agropecuario-forestal-2020-inicial-reclasificado-sin-humedales.tif"
+    "mapa-agropecuario-forestal-2020-inicial-reclasificado-v2.tif"
   )
 
 

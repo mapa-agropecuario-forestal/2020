@@ -14,11 +14,11 @@ library(terra)
 
 # Archivo raster de capa de uso agropecuario forestal reclasificado comprimido
 ARCHIVO_RASTER_USO_AGROPECUARIO_FORESTAL_RECLASIFICADO <-
-  here("salidas", "mapa-agropecuario-forestal-2020-sin-humedales.tif")
+  here("salidas", "mapa-agropecuario-forestal-2020-v2.tif")
 
 # Archivo CSV con estadísticas
 ARCHIVO_CSV_ESTADISTICAS <-
-  here("salidas", "estadisticas-sin-humedales.csv")
+  here("salidas", "estadisticas-v2.csv")
 
 
 # PROCESAMIENTO
