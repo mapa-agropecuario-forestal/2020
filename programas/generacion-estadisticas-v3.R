@@ -35,7 +35,7 @@ estadisticas <- estadisticas |> mutate(
   nombre_clase = case_when(
     value == 1 ~ "Red vial",
     value == 2 ~ "Parque nacional, reserva biológica o monumento natural",
-    value == 3 ~ "Humedal",
+    value == 3 ~ "Cuerpo de agua",
     value == 4 ~ "Patrimonio natural del estado",
     value == 5 ~ "Caña",
     value == 6 ~ "Banano",

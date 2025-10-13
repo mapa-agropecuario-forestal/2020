@@ -44,7 +44,7 @@
 			<colorPalette>
 				<paletteEntry alpha="255" color="#f80000" value="1"  label="Red vial"/>
 				<paletteEntry alpha="255" color="#afffaf" value="2"  label="Parque nacional, reserva biológica o monumento natural"/>
-				<paletteEntry alpha="255" color="#b4e6fa" value="3"  label="Humedal"/>
+				<paletteEntry alpha="255" color="#b4e6fa" value="3"  label="Cuerpo de agua"/>
 				<paletteEntry alpha="255" color="#cdcd64" value="4"  label="Patrimonio natural del estado"/>
 				<paletteEntry alpha="255" color="#ffaa00" value="5"  label="Caña"/>
 				<paletteEntry alpha="255" color="#f0f000" value="6"  label="Banano"/>
