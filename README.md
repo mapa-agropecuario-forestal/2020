@@ -2,9 +2,20 @@
 
 Este repositorio contiene un mapa de referencia de tierras agropecuarias y de cobertura forestal de Costa Rica para el año 2020, junto con el código fuente y la documentación utilizados para generarlo.
 
+## Versiones del mapa
+
+| Versión | Fecha | Cambio respecto a la versión anterior | Archivo raster |
+|---|---|---|---|
+| 1 | 2025-03 | Versión inicial, con las 18 clases. | `salidas/mapa-agropecuario-forestal-2020.tif` |
+| 2 | 2025-09 | Se omiten los humedales (Registro Nacional de Humedales y cuerpos de agua REDD). | `salidas/mapa-agropecuario-forestal-2020-v2.tif` |
+| 3 | 2025-10 | Se reincorporan los cuerpos de agua REDD (clase 3, "Cuerpo de agua"). Es la versión publicada en el SNIT. | `salidas/mapa-agropecuario-forestal-2020-v3.tif` |
+| 4 | 2026-09 | Se omiten las capas máscara de Áreas Silvestres Protegidas (clase 2) y Patrimonio Natural del Estado (clase 4), a solicitud de MAG-MINAE (2026-09-17), luego de detectarse que la capa de PNE de SINAC usada en el mapa fue reposicionada por SINAC en versiones posteriores. Los espacios que ocupaban se llenan con la jerarquía de las demás capas. Ver [`documentacion/analisis-desplazamiento-asp-pne-2026-09.md`](documentacion/analisis-desplazamiento-asp-pne-2026-09.md). | `salidas/mapa-agropecuario-forestal-2020-v4.tif` |
+
+Cada versión nueva se genera con copias `-vN` de los programas que cambiaron; los programas sin sufijo corresponden a la versión 1. Los archivos de estilo de QGIS de cada versión están en `qgis/bak/`.
+
 ## Flujo de trabajo
 
-1. Remuestreo de capas raster: `programas/remuestreo.R`
+1. Remuestreo de capas raster: `programas/remuestreo.R` / `programas/remuestreo-v3.R`
     - Entradas
         - Directorio de capas raster originales: `datos/originales/raster`
     - Salidas
@@ -16,30 +27,53 @@ Este repositorio contiene un mapa de referencia de tierras agropecuarias y de co
     - Salidas
         - Directorio de capas rasterizadas: `datos/procesados/rasterizados`
 
-3. Combinación de capas remuestreadas y rasterizadas: `programas/combinacion.R` / `programas/combinacion-v2.R`
+3. Combinación de capas remuestreadas y rasterizadas: `programas/combinacion.R` / `programas/combinacion-v2.R` / `programas/combinacion-v3.R` / `programas/combinacion-v4.R`
     - Entradas
         - Directorio de capas rasterizadas: `datos/procesados/rasterizados`
         - Directorio de capas remuestreadas: `datos/procesados/remuestreados`
     - Salidas
-        - Archivo raster de capa de uso agropecuario forestal inicial: `salidas/mapa-agropecuario-forestal-2020-inicial.tif` / `salidas/mapa-agropecuario-forestal-2020-inicial-v2.tif`
+        - Archivo raster de capa de uso agropecuario forestal inicial: `salidas/mapa-agropecuario-forestal-2020-inicial.tif` / `salidas/mapa-agropecuario-forestal-2020-inicial-v2.tif` / `salidas/mapa-agropecuario-forestal-2020-inicial-v3.tif` / `salidas/mapa-agropecuario-forestal-2020-inicial-v4.tif`
 
-4. Reclasificación de la capa combinada: `programas/reclasificacion.R` / `programas/reclasificacion-v2.R`
+4. Reclasificación de la capa combinada: `programas/reclasificacion.R` / `programas/reclasificacion-v2.R` / `programas/reclasificacion-v3.R` / `programas/reclasificacion-v4.R`
     - Entradas
-        - Archivo raster de capa de uso agropecuario forestal inicial: `salidas/mapa-agropecuario-forestal-2020-inicial.tif` / `salidas/mapa-agropecuario-forestal-2020-inicial-v2.tif`
+        - Archivo raster de capa de uso agropecuario forestal inicial: `salidas/mapa-agropecuario-forestal-2020-inicial.tif` / `salidas/mapa-agropecuario-forestal-2020-inicial-v2.tif` / `salidas/mapa-agropecuario-forestal-2020-inicial-v3.tif` / `salidas/mapa-agropecuario-forestal-2020-inicial-v4.tif`
     - Salidas
-        - Archivo raster de capa de uso agropecuario forestal inicial reclasificada: `salidas/mapa-agropecuario-forestal-2020-inicial-reclasificado.tif` / `salidas/mapa-agropecuario-forestal-2020-inicial-reclasificado-v2.tif`
+        - Archivo raster de capa de uso agropecuario forestal inicial reclasificada: `salidas/mapa-agropecuario-forestal-2020-inicial-reclasificado.tif` / `salidas/mapa-agropecuario-forestal-2020-inicial-reclasificado-v2.tif` / `salidas/mapa-agropecuario-forestal-2020-inicial-reclasificado-v3.tif` / `salidas/mapa-agropecuario-forestal-2020-inicial-reclasificado-v4.tif`
 
-5. Compresión de la capa reclasificada: `programas/compresion-salidas.sh` / `programas/compresion-salidas-v2.sh`
+5. Compresión de la capa reclasificada: `programas/compresion-salidas.sh` / `programas/compresion-salidas-v2.sh` / `programas/compresion-salidas-v3.sh` / `programas/compresion-salidas-v4.sh`
     - Entradas
-        - Archivo raster de capa de uso agropecuario forestal inicial reclasificada: `salidas/mapa-agropecuario-forestal-2020-inicial-reclasificado.tif` / `salidas/mapa-agropecuario-forestal-2020-inicial-reclasificado-v2.tif`
+        - Archivo raster de capa de uso agropecuario forestal inicial reclasificada: `salidas/mapa-agropecuario-forestal-2020-inicial-reclasificado.tif` / `salidas/mapa-agropecuario-forestal-2020-inicial-reclasificado-v2.tif` / `salidas/mapa-agropecuario-forestal-2020-inicial-reclasificado-v3.tif` / `salidas/mapa-agropecuario-forestal-2020-inicial-reclasificado-v4.tif`
     - Salidas
-        - Archivo raster de capa de uso agropecuario forestal (comprimida): `salidas/mapa-agropecuario-forestal-2020.tif` / `salidas/mapa-agropecuario-forestal-2020-v2.tif`
+        - Archivo raster de capa de uso agropecuario forestal (comprimida): `salidas/mapa-agropecuario-forestal-2020.tif` / `salidas/mapa-agropecuario-forestal-2020-v2.tif` / `salidas/mapa-agropecuario-forestal-2020-v3.tif` / `salidas/mapa-agropecuario-forestal-2020-v4.tif`
 
-6. Generación de estadísticas: `programas/generacion-estadisticas.R`
+6. Generación de estadísticas: `programas/generacion-estadisticas.R` / `programas/generacion-estadisticas-v2.R` / `programas/generacion-estadisticas-v3.R` / `programas/generacion-estadisticas-v4.R`
     - Entradas
-        - Archivo raster de capa de uso agropecuario forestal (comprimida): `salidas/mapa-agropecuario-forestal-2020.tif` / `salidas/mapa-agropecuario-forestal-2020-v2.tif`
+        - Archivo raster de capa de uso agropecuario forestal (comprimida): `salidas/mapa-agropecuario-forestal-2020.tif` / `salidas/mapa-agropecuario-forestal-2020-v2.tif` / `salidas/mapa-agropecuario-forestal-2020-v3.tif` / `salidas/mapa-agropecuario-forestal-2020-v4.tif`
     - Salidas
-        - Archivo CSV con estadísticas: `salidas/estadisticas.csv` / `salidas/estadisticas-v2.csv`
+        - Archivo CSV con estadísticas: `salidas/estadisticas.csv` / `salidas/estadisticas-v2.csv` / `salidas/estadisticas-v3.csv` / `salidas/estadisticas-v4.csv`
+
+7. Generación de la tabla de atributos del raster (a partir de la versión 4; en las versiones anteriores se generó con QGIS): `programas/generacion-tabla-atributos-v4.R`
+    - Entradas
+        - Archivo raster de capa de uso agropecuario forestal (comprimida): `salidas/mapa-agropecuario-forestal-2020-v4.tif`
+    - Salidas
+        - Tabla de atributos: `salidas/mapa-agropecuario-forestal-2020-v4.tif.vat.dbf` y `salidas/mapa-agropecuario-forestal-2020-v4.tif.vat.cpg`
+
+8. Generación del archivo PNG del mapa (a partir de la versión 4; en las versiones anteriores se generó con QGIS): `programas/generacion-png-v4.R`
+    - Entradas
+        - Archivo raster de capa de uso agropecuario forestal (comprimida): `salidas/mapa-agropecuario-forestal-2020-v4.tif`
+    - Salidas
+        - Archivo PNG: `salidas/mapa-agropecuario-forestal-2020-v4.png`
+
+9. Verificación de la versión 4 respecto a la versión 3: `programas/verificacion-v4.R`
+    - Entradas
+        - `salidas/mapa-agropecuario-forestal-2020-v3.tif` y `salidas/mapa-agropecuario-forestal-2020-v4.tif`
+    - Salidas
+        - Matriz de transición de clases entre versiones: `salidas/transicion-v3-v4.csv`
+
+Programas auxiliares:
+
+- `programas/descarga-capas-wfs.qmd`: descarga de capas vectoriales desde servicios WFS.
+- `programas/analisis-desplazamiento-asp-pne.R`: comparación de las versiones de las capas de ASP y PNE de SINAC usadas en el mapa con las publicadas en 2026 (ver `documentacion/analisis-desplazamiento-asp-pne-2026-09.md`). Salidas: `salidas/desplazamiento-pne-2025-02-vs-2026-06.csv` y `salidas/desplazamiento-asp-2024-05-vs-2026-06.csv`.
 
 ## Manejo del contenedor Docker
 
