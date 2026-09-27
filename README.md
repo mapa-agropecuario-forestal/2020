@@ -9,7 +9,7 @@ Este repositorio contiene un mapa de referencia de tierras agropecuarias y de co
 | 1 | 2025-03 | Versión inicial, con las 18 clases. | `salidas/mapa-agropecuario-forestal-2020.tif` |
 | 2 | 2025-09 | Se omiten los humedales (Registro Nacional de Humedales y cuerpos de agua REDD). | `salidas/mapa-agropecuario-forestal-2020-v2.tif` |
 | 3 | 2025-10 | Se reincorporan los cuerpos de agua REDD (clase 3, "Cuerpo de agua"). Es la versión publicada en el SNIT. | `salidas/mapa-agropecuario-forestal-2020-v3.tif` |
-| 4 | 2026-09 | Se omiten las capas máscara de Áreas Silvestres Protegidas (clase 2) y Patrimonio Natural del Estado (clase 4), a solicitud de MAG-MINAE (2026-09-17), luego de detectarse que la capa de PNE de SINAC usada en el mapa fue reposicionada por SINAC en versiones posteriores. Los espacios que ocupaban se llenan con la jerarquía de las demás capas. Ver [`documentacion/analisis-desplazamiento-asp-pne-2026-09.md`](documentacion/analisis-desplazamiento-asp-pne-2026-09.md). | `salidas/mapa-agropecuario-forestal-2020-v4.tif` |
+| 4 | 2026-09 | Se omiten las capas máscara de Áreas Silvestres Protegidas (ASP, clase 2) y de Patrimonio Natural del Estado (PNE, clase 4). | `salidas/mapa-agropecuario-forestal-2020-v4.tif` |
 
 Cada versión nueva se genera con copias `-vN` de los programas que cambiaron; los programas sin sufijo corresponden a la versión 1. Los archivos de estilo de QGIS de cada versión están en `qgis/bak/`.
 
@@ -75,8 +75,6 @@ Cada versión nueva se genera con copias `-vN` de los programas que cambiaron; l
 Programas auxiliares:
 
 - `programas/descarga-capas-wfs.qmd`: descarga de capas vectoriales desde servicios WFS.
-- `programas/comparacion-versiones-asp-pne.R`: comparación de las versiones de las capas de ASP y PNE de SINAC usadas en los mapas 2020 y 2023 con la versión vigente del WFS de SINAC (ver `documentacion/analisis-desplazamiento-asp-pne-2026-09.md`). Salidas: `salidas/comparacion-versiones-{pne,asp}-resumen.csv` y `salidas/comparacion-versiones-{pne,asp}-<a>-vs-<b>.csv`.
-- `programas/analisis-desplazamiento-asp-pne.R`: comparación de las versiones de las capas de ASP y PNE de SINAC usadas en el mapa con las publicadas en 2026 (ver `documentacion/analisis-desplazamiento-asp-pne-2026-09.md`). Salidas: `salidas/desplazamiento-pne-2025-02-vs-2026-06.csv` y `salidas/desplazamiento-asp-2024-05-vs-2026-06.csv`.
 
 ## Manejo del contenedor Docker
 

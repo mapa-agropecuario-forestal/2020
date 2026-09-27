@@ -4,8 +4,8 @@
 # Comprueba que la versión 4 (sin ASP ni PNE) es idéntica a la versión 3 en
 # todas las celdas donde la versión 3 no tenía las clases 2 (ASP) ni 4
 # (PNE), y reporta a qué clases pasaron las celdas que en la versión 3
-# tenían esas dos clases. También muestrea el mapa en los sitios de las
-# capturas de pantalla enviadas por MAG-MINAE (2026-09-18).
+# tenían esas dos clases. También muestrea el mapa en algunos puntos de
+# control ubicados en las clases omitidas.
 #
 # Salidas (en salidas/):
 #   - transicion-v3-v4.csv: matriz de transición de clases v3 -> v4 (celdas)
@@ -28,9 +28,9 @@ ARCHIVO_CSV_TRANSICION <- here("salidas", "transicion-v3-v4.csv")
 # Clases omitidas en la versión 4
 CLASES_OMITIDAS <- c(2, 4)
 
-# Sitios de las capturas de pantalla (CRTM05, EPSG:5367)
+# Puntos de control (CRTM05, EPSG:5367)
 SITIOS <- data.frame(
-  sitio = c("Captura 1 (PNE, Tronadora)", "Captura 2 (PNE, Guanacaste)", "Captura 3 (ASP, Chirripó)"),
+  sitio = c("Punto 1 (PNE, Tronadora)", "Punto 2 (PNE, Guanacaste)", "Punto 3 (ASP, Chirripó)"),
   x = c(410409.67, 350256.99, 559801.19),
   y = c(1152529.08, 1202468.42, 1037045.89)
 )
@@ -97,7 +97,7 @@ transicion |>
 cat("Finalizado\n\n")
 
 
-cat("3/3 Muestreando los sitios de las capturas ...\n")
+cat("3/3 Muestreando los puntos de control ...\n")
 
 valores <- data.frame(
   SITIOS,

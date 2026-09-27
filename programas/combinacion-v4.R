@@ -3,8 +3,7 @@
 #
 # Igual a combinacion-v3.R, pero se omiten las capas máscara de
 # Patrimonio Natural del Estado (PNE, 204) y Áreas Silvestres Protegidas
-# (ASP, 202), según solicitud de MAG-MINAE del 2026-09-17. Ver
-# documentacion/analisis-desplazamiento-asp-pne-2026-09.md
+# (ASP, 202).
 #
 
 

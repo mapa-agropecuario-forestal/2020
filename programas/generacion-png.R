@@ -64,7 +64,7 @@ VERSIONES <- list(
     version = 4, fecha = "setiembre de 2026",
     archivo_tif = "mapa-agropecuario-forestal-2020-v4.tif",
     archivo_png = "mapa-agropecuario-forestal-2020-v4.png",
-    cambio = "Se omiten las capas de áreas silvestres protegidas y de Patrimonio Natural del Estado.",
+    cambio = "Se omiten las capas máscara de Áreas Silvestres Protegidas (ASP) y de Patrimonio Natural del Estado (PNE).",
     etiqueta_clase_3 = "Cuerpo de agua"
   )
 )
