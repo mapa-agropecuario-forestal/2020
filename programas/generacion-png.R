@@ -37,13 +37,6 @@ ARCHIVO_VECTORIAL_COSTARICA <-
 ARCHIVO_VECTORIAL_PAISES_VECINOS <-
   here("datos", "originales", "vectoriales", "paises-vecinos-natural-earth.gpkg")
 
-# Posición (EPSG:5367) de los nombres de los países vecinos
-NOMBRES_PAISES_VECINOS <- data.frame(
-  nombre = c("NICARAGUA", "PANAMÁ"),
-  x = c(430000, 645000),
-  y = c(1232000, 905000)
-)
-
 # Versiones del mapa
 VERSIONES <- list(
   list(
@@ -106,7 +99,6 @@ MAXCELL <- 8e6
 COLOR_MAR <- "#dfe6ea"
 COLOR_PAIS_VECINO <- "#f0f0f0"
 COLOR_CONTORNO_PAIS_VECINO <- "#a6a6a6"
-COLOR_NOMBRE_PAIS_VECINO <- "#8c8c8c"
 COLOR_TIERRA_SIN_DATO <- "#ffffff"
 COLOR_CONTORNO <- "#4d4d4d"
 COLOR_TEXTO <- "#222222"
@@ -209,8 +201,6 @@ generar_png <- function(v, costarica, paises_vecinos, directorio_salidas) {
   if (!is.null(paises_vecinos)) {
     plot(paises_vecinos, col = COLOR_PAIS_VECINO, border = COLOR_CONTORNO_PAIS_VECINO,
          lwd = 0.9, add = TRUE)
-    text(NOMBRES_PAISES_VECINOS$x, NOMBRES_PAISES_VECINOS$y, NOMBRES_PAISES_VECINOS$nombre,
-         cex = 1.0, col = COLOR_NOMBRE_PAIS_VECINO, font = 2)
   }
   plot(costarica, col = COLOR_TIERRA_SIN_DATO, border = NA, add = TRUE)
   plot(mapa, col = clases$color, type = "classes", levels = clases$codigo,
