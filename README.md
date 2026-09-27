@@ -73,6 +73,7 @@ Cada versión nueva se genera con copias `-vN` de los programas que cambiaron; l
 Programas auxiliares:
 
 - `programas/descarga-capas-wfs.qmd`: descarga de capas vectoriales desde servicios WFS.
+- `programas/comparacion-versiones-asp-pne.R`: comparación de las versiones de las capas de ASP y PNE de SINAC usadas en los mapas 2020 y 2023 con la versión vigente del WFS de SINAC (ver `documentacion/analisis-desplazamiento-asp-pne-2026-09.md`). Salidas: `salidas/comparacion-versiones-{pne,asp}-resumen.csv` y `salidas/comparacion-versiones-{pne,asp}-<a>-vs-<b>.csv`.
 - `programas/analisis-desplazamiento-asp-pne.R`: comparación de las versiones de las capas de ASP y PNE de SINAC usadas en el mapa con las publicadas en 2026 (ver `documentacion/analisis-desplazamiento-asp-pne-2026-09.md`). Salidas: `salidas/desplazamiento-pne-2025-02-vs-2026-06.csv` y `salidas/desplazamiento-asp-2024-05-vs-2026-06.csv`.
 
 ## Manejo del contenedor Docker

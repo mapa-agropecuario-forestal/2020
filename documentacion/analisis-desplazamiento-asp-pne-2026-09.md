@@ -110,6 +110,38 @@ La versión 4 se generó con la misma rutina de la versión 3, omitiendo las cap
 
 Productos de la versión 4 en `salidas/`: `mapa-agropecuario-forestal-2020-v4.tif` (GeoTIFF comprimido con ZSTD), `mapa-agropecuario-forestal-2020-v4.tif.vat.dbf` (tabla de atributos), `mapa-agropecuario-forestal-2020-v4.png`, `estadisticas-v4.csv`, `transicion-v3-v4.csv`; estilo de QGIS en `qgis/bak/mapa-agropecuario-forestal-2020-v4.qml`.
 
+## Estado de las capas de SINAC al 2026-09-27 (`programas/comparacion-versiones-asp-pne.R`)
+
+### Dónde están las capas
+
+- El GeoServer del SNIT (`geos.snitcr.go.cr/be`) tiene el WFS habilitado por nodo (por ejemplo, el del IGN responde), pero el workspace `SINAC` tiene el **WFS deshabilitado y su WMS no publica ninguna capa**. Hoy no hay en el SNIT una capa descargable de ASP ni de PNE.
+- Las capas descargables de SINAC están en el GeoServer de SIREFOR, `https://geos1pne.sirefor.go.cr/wfs` (workspace `PNE`), que es el que alimenta el nodo SINAC del SNIT y el que usan MAG-MINAE (sus capas en QGIS se llaman `PNE:areas_silvestres_protegidas`). Todas las versiones comparadas aquí provienen de ese servicio.
+- Las coordenadas que entrega el servicio hoy difieren ~0.07 m de las de las descargas anteriores para polígonos que no han cambiado (compatible con un paso CR05 ↔ CR‑SIRGAS en el servidor). Es irrelevante para el mapa, pero obliga a emparejar polígonos con tolerancia relativa (0.01 % en área y perímetro) en lugar de exigir coordenadas idénticas.
+
+### PNE: la capa sigue cambiando
+
+| Versión | Fecha de descarga | Uso | Polígonos | Área total |
+|---|---|---|---|---|
+| A | 2025-02-12 | Mapa 2020 (v1 a v3) | 1281 | 204 469 ha |
+| B | 2026-06-18 | Mapa 2023 | 1306 | 212 184 ha |
+| C | 2026-09-27 | Vigente | 1378 | 236 461 ha |
+
+| Comparación | Misma forma | Sin cambio (≤ 1 m) | Desplazados > 1 m | > 100 m | > 600 m | Máximo | Solo en la versión anterior | Solo en la posterior |
+|---|---|---|---|---|---|---|---|---|
+| A → B (mapa 2020 → mapa 2023) | 1253 | 923 | 330 | 152 | 46 | 3.5 km | 28 (4 252 ha) | 53 (11 966 ha) |
+| B → C (mapa 2023 → vigente) | 1160 | 1008 | 152 | 79 | 23 | 3.8 km | 146 (17 315 ha) | 218 (41 592 ha) |
+| A → C (mapa 2020 → vigente) | 1117 | 711 | 406 | 198 | 65 | 3.8 km | 164 (20 650 ha) | 261 (52 642 ha) |
+
+- Entre junio y setiembre de 2026 SINAC volvió a mover 152 polígonos (18 627 ha; 78 de "PARQUE NACIONAL" y 47 de "FUERA ASP"), agregó 218 (41 592 ha, entre ellos planos grandes de Rincón de la Vieja, Corcovado, Carara, Juan Castro Blanco y Braulio Carrillo) y retiró o modificó 146. Los mayores desplazamientos nuevos están en el Parque Nacional Guanacaste (planos G‑607678‑1985, G‑7541‑1972, G‑607774‑1985 y otros, entre 1.8 y 3.1 km).
+- Los planos de las capturas de MAG-MINAE: el 2‑39592‑1962 está hoy donde estaba en junio de 2026 (572 m de su posición en el mapa 2020); el G‑0233612‑1995 se movió otra vez entre junio y setiembre de 2026 (centroide 2025: 410129/1151735; jun‑2026: 410199/1151730; hoy: 410073/1151813).
+- **Implicación**: la versión de PNE usada en el mapa 2023 (junio de 2026) ya tampoco coincide con la vigente. Ninguna versión incrustada como máscara raster se mantiene vigente por mucho tiempo; esto refuerza la decisión de excluir la capa de los mapas y consultarla siempre en línea.
+
+### ASP: sin cambios en las categorías del mapa
+
+Para parques nacionales, reservas biológicas y monumentos naturales, la versión vigente es **idéntica** a la usada en el mapa 2023 (54 polígonos, 0 m de desplazamiento). Respecto a la usada en el mapa 2020, los únicos cambios son los ya descritos: el Parque Internacional La Amistad cambió de geometría (198 285 → 198 313 ha), Isla San Lucas pasó a parque nacional (449 + 995 ha) y se agregó el Monumento Natural Zona de los Santos (1 861 ha). Los 50 polígonos restantes son idénticos en las tres versiones.
+
+Salidas: `salidas/comparacion-versiones-{pne,asp}-resumen.csv` (resumen por par de versiones) y `salidas/comparacion-versiones-{pne,asp}-<a>-vs-<b>.csv` (detalle por polígono).
+
 ## Pendiente
 
 - Validar la versión 4 con la malla de puntos de control que preparan MAG-MINAE.

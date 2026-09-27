@@ -1,0 +1,4 @@
+capa,version_a,uso_a,version_b,uso_b,poligonos_a,poligonos_b,area_total_ha_a,area_total_ha_b,emparejados,sin_cambio,desplazados_1m,desplazados_10m,desplazados_100m,desplazados_600m,desplazamiento_max_m,solo_en_a,solo_en_b,area_solo_en_a_ha,area_solo_en_b_ha
+PNE,2025-02,mapa 2020,2026-09,vigente 2026-09-27,1281,1378,204469.3,236461,1117,711,406,346,198,65,3757.6,164,261,20650.4,52642.1
+PNE,2026-06,mapa 2023,2026-09,vigente 2026-09-27,1306,1378,212183.7,236461,1160,1008,152,127,79,23,3757.6,146,218,17314.6,41591.9
+PNE,2025-02,mapa 2020,2026-06,mapa 2023,1281,1306,204469.3,212183.7,1253,923,330,283,152,46,3542.7,28,53,4251.8,11966.2
