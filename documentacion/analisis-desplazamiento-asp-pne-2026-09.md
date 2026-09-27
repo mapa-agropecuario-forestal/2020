@@ -9,7 +9,13 @@ El 2026-09-17, Ana Julieta Calvo (MINAE) y Mauricio Gutiérrez (MAG), en coordin
 - la clase 4, **Patrimonio Natural del Estado (PNE)**, del mapa y la capa vectorial vigente de PNE de SINAC, con desplazamientos "muy fuertes", de hasta ~600 m; y
 - la clase 2, **Áreas Silvestres Protegidas (ASP)**, del mapa y la capa vectorial vigente de ASP, con desplazamientos pequeños (~9 m), atribuibles a la rasterización.
 
-El 2026-09-18 enviaron tres capturas de pantalla (dos de PNE y una de ASP) y en una reunión virtual ese mismo día se acordó generar una **versión 4 del mapa 2020 sin las dos capas máscara (ASP y PNE)**, dejando que esos espacios se llenen con la información jerarquizada de las demás capas, y analizar la causa del problema. Entre las posibles causas se mencionaron la reproyección de las capas, las discrepancias entre versiones de las capas de SINAC publicadas a través del tiempo y el uso de `st_make_valid()`.
+El 2026-09-18 enviaron tres capturas de pantalla (dos de PNE y una de ASP; ver abajo) y en una reunión virtual ese mismo día se acordó generar una **versión 4 del mapa 2020 sin las dos capas máscara (ASP y PNE)**, dejando que esos espacios se llenen con la información jerarquizada de las demás capas, y analizar la causa del problema. Entre las posibles causas se mencionaron la reproyección de las capas, las discrepancias entre versiones de las capas de SINAC publicadas a través del tiempo y el uso de `st_make_valid()`.
+
+Capturas de pantalla enviadas por MAG-MINAE (QGIS; en café sólido la capa vectorial vigente, en verde olivo la clase PNE del MAF2020 v3; en la tercera, en verde claro la clase ASP):
+
+| Captura 1: PNE, Tronadora (214 m) | Captura 2: PNE, Guanacaste (626 m) | Captura 3: ASP, Chirripó (8.7 m) |
+|---|---|---|
+| ![Captura 1](captura-1-pne-tronadora-2026-09-18.png) | ![Captura 2](captura-2-pne-guanacaste-2026-09-18.png) | ![Captura 3](captura-3-asp-chirripo-2026-09-18.png) |
 
 ## Método
 
