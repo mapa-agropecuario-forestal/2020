@@ -58,11 +58,12 @@ Cada versión nueva se genera con copias `-vN` de los programas que cambiaron; l
     - Salidas
         - Tabla de atributos: `salidas/mapa-agropecuario-forestal-2020-v4.tif.vat.dbf` y `salidas/mapa-agropecuario-forestal-2020-v4.tif.vat.cpg`
 
-8. Generación del archivo PNG del mapa (a partir de la versión 4; en las versiones anteriores se generó con QGIS): `programas/generacion-png-v4.R`
+8. Generación de los archivos PNG de las cuatro versiones del mapa, con una misma plantilla (título, leyenda, contorno del país, escala y norte): `programas/generacion-png.R` (acepta como argumento el número de versión; sin argumento genera las cuatro)
     - Entradas
-        - Archivo raster de capa de uso agropecuario forestal (comprimida): `salidas/mapa-agropecuario-forestal-2020-v4.tif`
+        - Archivos raster de capa de uso agropecuario forestal (comprimida): `salidas/mapa-agropecuario-forestal-2020.tif` / `salidas/mapa-agropecuario-forestal-2020-v2.tif` / `salidas/mapa-agropecuario-forestal-2020-v3.tif` / `salidas/mapa-agropecuario-forestal-2020-v4.tif`
+        - Contorno de Costa Rica: `datos/originales/vectoriales/costarica.gpkg`
     - Salidas
-        - Archivo PNG: `salidas/mapa-agropecuario-forestal-2020-v4.png`
+        - Archivos PNG: `salidas/mapa-agropecuario-forestal-2020-v1.png` / `salidas/mapa-agropecuario-forestal-2020-v2.png` / `salidas/mapa-agropecuario-forestal-2020-v3.png` / `salidas/mapa-agropecuario-forestal-2020-v4.png`
 
 9. Verificación de la versión 4 respecto a la versión 3: `programas/verificacion-v4.R`
     - Entradas
