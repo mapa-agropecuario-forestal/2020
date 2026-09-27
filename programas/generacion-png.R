@@ -8,6 +8,13 @@
 # Las versiones 1 a 3 se exportaron originalmente a mano desde QGIS y la 4
 # con terra::plot(); este programa las regenera todas con el mismo estilo.
 #
+# Los contornos de Nicaragua y Panamá provienen de la capa "Admin 0 -
+# Countries" (1:10 M, dominio público) de Natural Earth
+# (https://www.naturalearthdata.com/), descargada el 2026-09-27 y guardada,
+# reproyectada a EPSG:5367, en datos/originales/vectoriales/
+# paises-vecinos-natural-earth.gpkg (no versionado). Si el archivo no
+# existe, las imágenes se generan sin los países vecinos.
+#
 # Uso:
 #   Rscript programas/generacion-png.R            # las cuatro versiones
 #   Rscript programas/generacion-png.R 4          # solo la versión 4
@@ -27,6 +34,15 @@ library(ragg)
 DIRECTORIO_SALIDAS <- here("salidas")
 ARCHIVO_VECTORIAL_COSTARICA <-
   here("datos", "originales", "vectoriales", "costarica.gpkg")
+ARCHIVO_VECTORIAL_PAISES_VECINOS <-
+  here("datos", "originales", "vectoriales", "paises-vecinos-natural-earth.gpkg")
+
+# Posición (EPSG:5367) de los nombres de los países vecinos
+NOMBRES_PAISES_VECINOS <- data.frame(
+  nombre = c("NICARAGUA", "PANAMÁ"),
+  x = c(430000, 645000),
+  y = c(1232000, 905000)
+)
 
 # Versiones del mapa
 VERSIONES <- list(
@@ -88,6 +104,9 @@ MAXCELL <- 8e6
 
 # Colores de la plantilla
 COLOR_MAR <- "#dfe6ea"
+COLOR_PAIS_VECINO <- "#f0f0f0"
+COLOR_CONTORNO_PAIS_VECINO <- "#a6a6a6"
+COLOR_NOMBRE_PAIS_VECINO <- "#8c8c8c"
 COLOR_TIERRA_SIN_DATO <- "#ffffff"
 COLOR_CONTORNO <- "#4d4d4d"
 COLOR_TEXTO <- "#222222"
@@ -105,7 +124,7 @@ partir_texto <- function(texto, ancho) {
 }
 
 # Genera la imagen de una versión
-generar_png <- function(v, costarica, directorio_salidas) {
+generar_png <- function(v, costarica, paises_vecinos, directorio_salidas) {
   archivo_tif <- file.path(DIRECTORIO_SALIDAS, v$archivo_tif)
   archivo_png <- file.path(directorio_salidas, v$archivo_png)
 
@@ -187,6 +206,12 @@ generar_png <- function(v, costarica, directorio_salidas) {
        asp = 1, axes = FALSE, xlab = "", ylab = "", xaxs = "i", yaxs = "i")
   usr <- par("usr")
   rect(usr[1], usr[3], usr[2], usr[4], col = COLOR_MAR, border = NA)
+  if (!is.null(paises_vecinos)) {
+    plot(paises_vecinos, col = COLOR_PAIS_VECINO, border = COLOR_CONTORNO_PAIS_VECINO,
+         lwd = 0.9, add = TRUE)
+    text(NOMBRES_PAISES_VECINOS$x, NOMBRES_PAISES_VECINOS$y, NOMBRES_PAISES_VECINOS$nombre,
+         cex = 1.0, col = COLOR_NOMBRE_PAIS_VECINO, font = 2)
+  }
   plot(costarica, col = COLOR_TIERRA_SIN_DATO, border = NA, add = TRUE)
   plot(mapa, col = clases$color, type = "classes", levels = clases$codigo,
        maxcell = MAXCELL, legend = FALSE, axes = FALSE, add = TRUE)
@@ -195,7 +220,7 @@ generar_png <- function(v, costarica, directorio_salidas) {
   # Barra de escala y norte
   sbar(50000, xy = c(usr[1] + 20000, usr[3] + 22000), type = "bar",
        divs = 2, below = "km", label = c(0, 25, 50), cex = 0.9, lwd = 1.5)
-  north(xy = c(usr[2] - 18000, usr[3] + 40000), type = 1, d = 20000,
+  north(xy = c(usr[1] + 110000, usr[3] + 42000), type = 1, d = 20000,
         label = "N", cex = 1.1)
 
   # Marco
@@ -218,9 +243,22 @@ costarica <- project(costarica, "EPSG:5367")
 costarica <- crop(costarica, ext(280000, 660000, 880000, 1250000))
 cat("Finalizado\n\n")
 
+cat("Cargando los países vecinos ...\n")
+paises_vecinos <- NULL
+if (file.exists(ARCHIVO_VECTORIAL_PAISES_VECINOS)) {
+  paises_vecinos <- vect(ARCHIVO_VECTORIAL_PAISES_VECINOS)
+  paises_vecinos <- project(paises_vecinos, "EPSG:5367")
+  # Recorte a un entorno del área del mapa
+  paises_vecinos <- crop(paises_vecinos, ext(230000, 710000, 830000, 1300000))
+  cat("Finalizado\n\n")
+} else {
+  cat("  AVISO: no existe", ARCHIVO_VECTORIAL_PAISES_VECINOS,
+      "; las imágenes se generan sin los países vecinos\n\n")
+}
+
 for (v in VERSIONES) {
   if (v$version %in% versiones_a_generar) {
-    generar_png(v, costarica, directorio_salidas)
+    generar_png(v, costarica, paises_vecinos, directorio_salidas)
   }
 }
 

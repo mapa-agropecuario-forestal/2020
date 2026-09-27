@@ -62,6 +62,7 @@ Cada versión nueva se genera con copias `-vN` de los programas que cambiaron; l
     - Entradas
         - Archivos raster de capa de uso agropecuario forestal (comprimida): `salidas/mapa-agropecuario-forestal-2020.tif` / `salidas/mapa-agropecuario-forestal-2020-v2.tif` / `salidas/mapa-agropecuario-forestal-2020-v3.tif` / `salidas/mapa-agropecuario-forestal-2020-v4.tif`
         - Contorno de Costa Rica: `datos/originales/vectoriales/costarica.gpkg`
+        - Contornos de Nicaragua y Panamá: `datos/originales/vectoriales/paises-vecinos-natural-earth.gpkg` (capa "Admin 0 – Countries" 1:10 M de [Natural Earth](https://www.naturalearthdata.com/), dominio público, descargada el 2026-09-27 y reproyectada a EPSG:5367; opcional)
     - Salidas
         - Archivos PNG: `salidas/mapa-agropecuario-forestal-2020-v1.png` / `salidas/mapa-agropecuario-forestal-2020-v2.png` / `salidas/mapa-agropecuario-forestal-2020-v3.png` / `salidas/mapa-agropecuario-forestal-2020-v4.png`
 
